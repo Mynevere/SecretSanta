@@ -1,0 +1,66 @@
+﻿@model SecretSanta.Models.Participants
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<link rel="stylesheet" type="text/css" href="~/css/table.css" />
+
+<h3><br /> List your participants</h3>
+
+
+@using (Html.BeginForm("Add", "Participants", FormMethod.Post))
+{
+    <div class="name-field">
+
+        Name:
+        <input asp-for="Name" placeholder="name" />
+        <br />
+        Email:
+        <input asp-for="Email" placeholder="name" />
+        <br />
+    </div>
+    <a class="btn-add" asp-area="" asp-controller="Participants" asp-action="Add">
+        <div class="btn_add">
+            <button type="submit">Add</button>
+        </div>
+    </a>
+}
+
+@{ 
+    ViewData["Title"] = "Details";
+}
+
+@using (Html.BeginForm("Add", "Participants", FormMethod.Get))
+{
+    <div>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        </dl>
+    </div>
+
+    <a class="btn-generate" asp-area="" asp-controller="Participants" asp-action="List">
+
+        <div class="btn_generate">
+            <button type="submit">Generate</button>
+        </div>
+    </a>
+
+}
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+﻿@model SecretSanta.Models.Participants
+@{
+    ViewData["Title"] = "Secret Santa Generator";
+}
+
+
+<div class="welcome">
+    <h1><strong>Welcome to<br />Secret Santa Generator 2019</strong><br /></h1>
+</div>
+<div class="secretS">
+
+    <h2>What is Secret Santa?</h2>
+    <p>
+        It’s a <strong>free</strong> online Secret Santa <strong>
+            gift exchange organizer.
+        </strong><br />
+        Organize a Secret Santa party with friends, family or even co-worker.
+    </p>
+</div>
+<div class="descript">
+    <div class="steps">
+        <h2>Only <br /><small>in <span class="accent">3 easy steps</span></small></h2>
+        <ul class="liststyle1">
+            <li class="mb-1"><span class="icon-steps">1</span> Write your name</li>
+            <li class="mb-2"><span class="icon-steps">2</span> List your participants</li>
+            <li class="mb-3"><span class="icon-steps">3</span> Generate!</li>
+        </ul>
+        <div class="btn-start">
+            <a class="btn-start" asp-area="" asp-controller="Participants" asp-action="Play">
+                <button type="submit">Start</button>
+            </a>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+

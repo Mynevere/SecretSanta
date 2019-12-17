@@ -1,0 +1,28 @@
+﻿@model SecretSanta.Models.Participants
+
+@{
+    ViewData["Title"] = "Play";
+}
+
+<div class="content">
+    
+    <div class="btn-go">
+        @using (Html.BeginForm("Play", "Participants", FormMethod.Post))
+        {
+            <div class="playerN">
+                <h3>Do you want to play?</h3>
+                Write your name here: <input type="text" placeholder="player name" asp-for="Name" /><br />
+                And your email here: <input type="text" placeholder="email" asp-for="Email"/><br/>
+            </div>
+
+            <a class="btn-go" asp-area="" asp-controller="Participants" asp-action="Add">
+                <button type="submit">
+                    Play
+                </button>
+            </a>
+        }
+    </div>
+</div>
+
+
+
