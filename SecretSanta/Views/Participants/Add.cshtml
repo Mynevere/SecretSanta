@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SecretSanta.Models.Participants>
+﻿@model SecretSanta.Models.Participants
 
 @{
     ViewData["Title"] = "Add";
@@ -8,7 +8,7 @@
 <h3><br /> List your participants</h3>
 
 
-@using (Html.BeginForm("Add", "Participants", FormMethod.Post))
+@using (Html.BeginForm("Add", "Participants", FormMethod.Post)) 
 {
     <div class="name-field">
 
@@ -24,23 +24,9 @@
             <button type="submit">Add</button>
         </div>
     </a>
+    
 }
-@using (Html.BeginForm("Add", "Participants", FormMethod.Get))
-{
-<table>
-    <tr style="border:1px solid red;margin:5px">
-        <td>Name</td>
-        <td>Email</td>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr style="border:1px solid red;margin:5px">
-            <td>@item.Name</td>
-            <td>@item.Email</td>
-        </tr>
-            }
-    </table>
-}
+
 
 
 

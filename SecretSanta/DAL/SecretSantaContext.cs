@@ -15,5 +15,7 @@ namespace SecretSanta.DAL
         }
 
         public DbSet<Participants>  Participants{ get; set; }
+
+        
     }
 }

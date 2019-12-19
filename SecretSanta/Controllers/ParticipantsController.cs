@@ -54,6 +54,13 @@ namespace SecretSanta.Controllers
             return View(participants);
         }
 
+
+
+        public IActionResult Generate => View(_context.Participants.ToList());
+
+        public SecretSantaContext Context => _context;
+
+
         // GET: Participants/Add
         public IActionResult Add()
         {
@@ -61,6 +68,10 @@ namespace SecretSanta.Controllers
             
         }
 
+       /* public IActionResult RecipientsGenerated()
+        {
+                return View(_context.Recipients.ToList());
+        }*/
 
         // POST: Participants/Add
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -69,32 +80,35 @@ namespace SecretSanta.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add([Bind("Name", "Email")] Participants participants)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
-                _context.Add(participants);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Add));
+                return View(participants);
+
             }
-            return View(participants);
-           
+            _context.Add(participants);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Add));
         }
 
-        
 
-        /* public static void Generate(List<Participants> p)
-         {
 
-             Random rand = new Random();
-             for (var i = p.Count(); i > 1;)
-             {
-                 i--;
-                 var j = (int)(rand.NextDouble() * (i));
-                 var tmp = p[j];
-                 p[j] = p[i];
-                 p[i] = tmp;
+        /*public static void GenerateL(List<Participants> p)
+        {
 
-             }
-         }*/
+            Random rand = new Random();
+            for (var i = p.Count(); i > 1;)
+            {
+                i--;
+                var j = (int)(rand.NextDouble() * (i));
+                var tmp = p[j];
+                p[j] = p[i];
+                p[i] = tmp;
+
+            }
+        }*/
+
+
 
 
     }
