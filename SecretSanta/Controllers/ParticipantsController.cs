@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SecretSanta.DAL;
@@ -21,29 +22,12 @@ namespace SecretSanta.Controllers
             _context = context;
         }
 
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.Participants.ToListAsync());
         }
-        [HttpGet]
-        [ValidateAntiForgeryToken]
-        /*public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var participants = await _context.Participants
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (participants == null)
-            {
-                return NotFound();
-            }
-
-            return View(participants);
-        }*/
-
+        
         // GET: Participants
 
         public IActionResult List()
@@ -65,7 +49,7 @@ namespace SecretSanta.Controllers
             {
                 _context.Add(participants);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Add));
+                return RedirectToAction(nameof(Add)); 
             }
             return View(participants);
         }
@@ -74,6 +58,7 @@ namespace SecretSanta.Controllers
         public IActionResult Add()
         {
             return View();
+            
         }
 
 
@@ -91,40 +76,10 @@ namespace SecretSanta.Controllers
                 return RedirectToAction(nameof(Add));
             }
             return View(participants);
+           
         }
 
-
-
-        // GET: Participants/Add
-
-        /*public async Task<IActionResult> Add([Bind("Name","Email")] List<Participants> participants)
-        {
-
-            if (ModelState.IsValid)
-            {
-
-                // Participants p = new Participants
-                 {
-                     Name = participants.Name 
-                 };//
-
-                List<Participants> pa = new List<Participants>();
-                foreach (var p in pa)
-                {
-                    pa.Add(participants);
-                }
-                _context.AddRange(pa);
-                await _context.SaveChangesAsync();
-
-
-
-
-                // await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(List));
-            }
-            return View(participants);
-
-        } */
+        
 
         /* public static void Generate(List<Participants> p)
          {
@@ -140,7 +95,7 @@ namespace SecretSanta.Controllers
 
              }
          }*/
-       
-      
+
+
     }
 }

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<SecretSanta.Models.Participants>
+@{
+    ViewData["Title"] = "Generate";
+}
+
+<h1>Generate</h1>
+
+<table>
+    <tr style="border:1px solid green; margin:5px;">
+        <td>Name</td>
+        <td>Email</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="border:1px solid red; margin:5px;">
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+        </tr>
+    }
+</table>

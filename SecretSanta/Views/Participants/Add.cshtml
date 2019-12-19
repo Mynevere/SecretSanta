@@ -1,10 +1,9 @@
-﻿@model SecretSanta.Models.Participants
+﻿@model IEnumerable<SecretSanta.Models.Participants>
 
 @{
     ViewData["Title"] = "Add";
-}
 
-<link rel="stylesheet" type="text/css" href="~/css/table.css" />
+}
 
 <h3><br /> List your participants</h3>
 
@@ -26,38 +25,23 @@
         </div>
     </a>
 }
-
-@{ 
-    ViewData["Title"] = "Details";
-}
-
 @using (Html.BeginForm("Add", "Participants", FormMethod.Get))
 {
-    <div>
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-        </dl>
-    </div>
-
-    <a class="btn-generate" asp-area="" asp-controller="Participants" asp-action="List">
-
-        <div class="btn_generate">
-            <button type="submit">Generate</button>
-        </div>
-    </a>
-
+<table>
+    <tr style="border:1px solid red;margin:5px">
+        <td>Name</td>
+        <td>Email</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="border:1px solid red;margin:5px">
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+        </tr>
+            }
+    </table>
 }
+
 
 
 
