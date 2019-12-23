@@ -1,0 +1,28 @@
+﻿@model IEnumerable<SecretSanta.Models.Participants>
+
+@{
+    ViewData["Title"] = "List of participants";
+}
+
+<h3>You're participants added successfully</h3>
+<br />
+<table>
+    <tr style="border:1px solid red; margin:5px;">
+        <td>Name</td>
+        <td>Email</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="border:1px solid red; margin:5px;">
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+        </tr>
+    }
+</table>
+<input type='button' value='Generate Secret Santa' id='myButton' onClick='redirectOnClick()' />
+<script>
+    function redirectOnClick(){
+    document.location ='Generate';
+    }
+</script>
+

@@ -7,9 +7,9 @@ namespace SecretSanta.Controllers
     public class SecretSantaController : Controller
     {
         // GET: /SecretSanta/
-
         public ViewResult Index()
         {
+
             return View();
         }
 

@@ -21,5 +21,6 @@ namespace SecretSanta.Models
         {
             return Name;
         }
+
     }
 }

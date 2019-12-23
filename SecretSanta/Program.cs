@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using SecretSant;
+using SecretSanta.Controllers;
 
 namespace SecretSanta
 {
@@ -10,6 +11,7 @@ namespace SecretSanta
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
+
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

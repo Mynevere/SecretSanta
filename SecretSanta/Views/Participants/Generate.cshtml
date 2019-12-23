@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SecretSanta.Models.Participants>
+﻿@model IEnumerable<SecretSanta.Models.Recipients>
 @{
     ViewData["Title"] = "Generate";
 }
@@ -6,14 +6,18 @@
 <h1>Generate</h1>
 <table>
     <tr style="border:1px solid red; margin:5px;">
-        <td>Name</td>
-        <td>Email</td>
+        <td>Sender Name|</td>
+        <td>Sender Email|</td>
+        <td>Recipients Name|</td>
+        <td>Recipients Email</td>
     </tr>
     @foreach (var item in Model)
     {
         <tr style="border:1px solid red; margin:5px;">
-            <td>@item.Name</td>
-            <td>@item.Email</td>
+            <td>@item.NameS</td>
+            <td>@item.EmailS</td>
+            <td>@item.NameR</td>
+            <td>@item.EmailR</td>
         </tr>
     }
 </table>

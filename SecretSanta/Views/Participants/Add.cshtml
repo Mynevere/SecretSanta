@@ -8,7 +8,7 @@
 <h3><br /> List your participants</h3>
 
 
-@using (Html.BeginForm("Add", "Participants", FormMethod.Post)) 
+@using (Html.BeginForm("Add", "Participants", FormMethod.Post))
 {
     <div class="name-field">
 
@@ -25,6 +25,14 @@
         </div>
     </a>
     
+
+    <input type='button' value='Show List' id='myButton' onClick='redirectOnClick()' />
+    <script>
+    function redirectOnClick(){
+    document.location ='showList';
+    }
+    </script>
+
 }
 
 
