@@ -7,6 +7,7 @@ namespace SecretSanta.Models
 {
     public class Recipients
     {
+
         public int Id { get; set; }
         public string NameS { get; set; }
         public string EmailS { get; set; }

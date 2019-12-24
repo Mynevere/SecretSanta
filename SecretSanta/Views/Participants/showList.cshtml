@@ -6,10 +6,30 @@
 
 <h3>You're participants added successfully</h3>
 <br />
+<style>
+    table {
+        width: 100%;
+    }
+
+    table, th, td {
+        border: 1px solid red;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color: red;
+        color: white;
+    }
+</style>
 <table>
     <tr style="border:1px solid red; margin:5px;">
-        <td>Name</td>
-        <td>Email</td>
+        <th>Name</th>
+        <th>Email</th>
     </tr>
     @foreach (var item in Model)
     {
@@ -21,8 +41,8 @@
 </table>
 <input type='button' value='Generate Secret Santa' id='myButton' onClick='redirectOnClick()' />
 <script>
-    function redirectOnClick(){
-    document.location ='Generate';
+    function redirectOnClick() {
+        document.location = 'Generate';
     }
 </script>
 

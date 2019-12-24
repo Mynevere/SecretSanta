@@ -1,14 +1,33 @@
 ﻿@model IEnumerable<SecretSanta.Models.Recipients>
 @{
-    ViewData["Title"] = "Generate";
+    ViewData["Title"] = "List of Secret Santa";
 }
 
-<h1>Generate</h1>
+<h1>List of Secret Santa</h1><br/>
+<style>
+    table {
+        width: 100%;
+    }
+
+    table, th, td {
+        border: 1px solid red;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+    th{
+        background-color: red;
+        color: white;
+    }
+</style>
 <table>
     <tr style="border:1px solid red; margin:5px;">
-        <td>Sender Name|</td>
-        <td>Sender Email|</td>
-        <td>Recipients Name|</td>
+        <th>Sender Name</th>
+        <td>Sender Email</td>
+        <th>Recipients Name</th>
         <td>Recipients Email</td>
     </tr>
     @foreach (var item in Model)
