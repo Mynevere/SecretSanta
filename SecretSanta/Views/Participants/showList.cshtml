@@ -4,11 +4,37 @@
     ViewData["Title"] = "List of participants";
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
 <h3>You're participants added successfully</h3>
 <br />
+<table>
+    <tr style="border:1px solid red; margin:5px;">
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr style="border:1px solid red; margin:5px;">
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+        </tr>
+    }
+</table>
+<input type='button' class="btn btn-outline-danger" value='Generate Secret Santa' id='myButton' onClick='redirectOnClick()' />
+<script>
+    function redirectOnClick() {
+        document.location = 'Generate';
+    }
+</script>
+
 <style>
-    table {
+    h3{
+        margin-top:50px;
+    }
+     table {
         width: 100%;
+        margin-top: 100px;
+        margin-left: 70px;
     }
 
     table, th, td {
@@ -25,24 +51,11 @@
         background-color: red;
         color: white;
     }
+
+    .btn-outline-danger{
+        margin-left:520px;
+        margin-top:50px;
+    }
+    
 </style>
-<table>
-    <tr style="border:1px solid red; margin:5px;">
-        <th>Name</th>
-        <th>Email</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr style="border:1px solid red; margin:5px;">
-            <td>@item.Name</td>
-            <td>@item.Email</td>
-        </tr>
-    }
-</table>
-<input type='button' value='Generate Secret Santa' id='myButton' onClick='redirectOnClick()' />
-<script>
-    function redirectOnClick() {
-        document.location = 'Generate';
-    }
-</script>
 

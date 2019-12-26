@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Data.Entity.Core.EntityClient;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SecretSanta.DAL;
 using SecretSanta.Models;
 
@@ -56,12 +52,14 @@ namespace SecretSanta.Controllers
         public async Task<IActionResult> Generate()
         {
             await GenerateList();
-            return View(_context.Recipients.ToList());
+            await Clear();
+            return View();
+            
         }
 
 
         // GET: Participants/Add
-        public IActionResult Add()
+        public IActionResult Add() 
         {
             return View();
 
@@ -86,44 +84,54 @@ namespace SecretSanta.Controllers
         }
 
 
+        //Generate participants and recipients 
+        //Save at Recipients Table 
         public async Task<IActionResult> GenerateList()
         {
             List<Participants> pa = new List<Participants>();
-            var list = new List<Participants>();             
+            var list = new List<Participants>();
 
             using (_context)
             {
                 var query = _context.Participants.ToList();
                 int n = query.Count;
                 Participants[] p = new Participants[n];
-                
+
                 foreach (var par in query)
                 {
-                        pa = query;
-                        p = pa.ToArray();
-                            list.Add(new Participants { Name = par.Name, Email = par.Email });
+                    pa = query;
+                    p = pa.ToArray();
+                    list.Add(new Participants { Name = par.Name, Email = par.Email });
                 }
                 p = list.ToArray();
                 GenerateL(list);
                 Recipients[] r = new Recipients[p.Length];
                 List<Recipients> re = new List<Recipients>();
 
-
                 for (int i = 0; i < n; i++)
                 {
                     re.Add(new Recipients { NameS = p[i].Name, EmailS = p[i].Email, NameR = list[i].Name, EmailR = list[i].Email });
-
                 }
-                _context.AddRange(re); 
-               await _context.SaveChangesAsync();
-               return View();
-               
+                _context.AddRange(re);
+                await _context.SaveChangesAsync();
+                return View(_context.Recipients.ToList());
+                
             }
-    }
+            
 
+        }
+        
+        public async Task<IActionResult> Clear()
+        {
+            _context.Participants.RemoveRange();
+            _context.Recipients.RemoveRange();
+            await _context.SaveChangesAsync();
+            return View();
+        }
+        
+        //Generate random list of recipients
         public static void GenerateL(List<Participants> p)
         {
-
             Random rand = new Random();
             for (var i = p.Count(); i > 1;)
             {
@@ -132,7 +140,6 @@ namespace SecretSanta.Controllers
                 var tmp = p[j];
                 p[j] = p[i];
                 p[i] = tmp;
-
             }
         }
       

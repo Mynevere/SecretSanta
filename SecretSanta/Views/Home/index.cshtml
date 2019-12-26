@@ -3,38 +3,68 @@
     ViewData["Title"] = "Secret Santa Generator";
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-grid.css" />
 
-<div class="welcome">
-    <h1><strong>Welcome to<br />Secret Santa Generator 2019</strong><br /></h1>
-</div>
-<div class="secretS">
+<div class="container">
+    <div class="welcome">
+        <h1><strong>Welcome to<br />Secret Santa Generator 2019</strong><br /></h1>
+    </div>
+    <div class="secretS">
 
-    <h2>What is Secret Santa?</h2>
-    <p>
-        It’s a <strong>free</strong> online Secret Santa <strong>
-            gift exchange organizer.
-        </strong><br />
-        Organize a Secret Santa party with friends, family or even co-worker.
-    </p>
-</div>
-<div class="descript">
-    <div class="steps">
-        <h2>Only <br /><small>in <span class="accent">3 easy steps</span></small></h2>
-        <ul class="liststyle1">
-            <li class="mb-1"><span class="icon-steps">1</span> Write your name</li>
-            <li class="mb-2"><span class="icon-steps">2</span> List your participants</li>
-            <li class="mb-3"><span class="icon-steps">3</span> Generate!</li>
-        </ul>
-        <div class="btn-start">
-            <a class="btn-start" asp-area="" asp-controller="Participants" asp-action="Play">
-                <button type="submit">Start</button>
-            </a>
-            
+        <h2>What is Secret Santa?</h2>
+        <p>
+            It’s a <strong>free</strong> online Secret Santa <strong>
+                gift exchange organizer.
+            </strong><br />
+            Organize a Secret Santa party with friends, family or even co-worker.
+        </p>
+    </div>
+    <div class="descript">
+        <div class="steps">
+            <h2>Only <br /><small>in <span class="accent">3 easy steps</span></small></h2>
+            <ul class="liststyle1">
+                <li class="mb-1"><span class="icon-steps">1</span> Write your name</li>
+                <li class="mb-2"><span class="icon-steps">2</span> List your participants</li>
+                <li class="mb-3"><span class="icon-steps">3</span> Generate!</li>
+            </ul>
+            <div class="btn-start">
+                <a class="btn-start" asp-area="" asp-controller="Participants" asp-action="Play">
+                    <button type="submit" class="btn btn-outline-danger">Start</button>
+                </a>
+
+            </div>
+        </div>
+        <div class="img3">
+            <img src="~/lib/img/img3.jpg" />
         </div>
     </div>
+
+
 </div>
+<style>
+    .container {
+        display: grid;
+    }
 
+    .welcome {
+        margin-top: 50px;
+    }
 
+    .secretS {
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+
+    .btn-start {
+        padding-left: 100px;
+    }
+
+    .img3 {
+        margin-left: 600px;
+        margin-top: -500px;
+    }
+</style>
 
 
 

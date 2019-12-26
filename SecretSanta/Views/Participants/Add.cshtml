@@ -4,7 +4,7 @@
     ViewData["Title"] = "Add";
 
 }
-
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css"/>
 <h3><br /> List your participants</h3>
 
 
@@ -13,20 +13,20 @@
     <div class="name-field">
 
         Name:
-        <input asp-for="Name" placeholder="name" />
+        <input class="name" asp-for="Name" placeholder="name" />
         <br />
         Email:
-        <input asp-for="Email" placeholder="name" />
+        <input class="email" asp-for="Email" placeholder="name" />
         <br />
     </div>
     <a class="btn-add" asp-area="" asp-controller="Participants" asp-action="Add">
         <div class="btn_add">
-            <button type="submit">Add</button>
+            <button type="submit" class="btn btn-outline-danger">Add</button>
         </div>
     </a>
     
 
-    <input type='button' value='Show List' id='myButton' onClick='redirectOnClick()' />
+    <input type='button' class="btn btn-outline-danger" value='Show List' id='myButton' onClick='redirectOnClick()' />
     <script>
     function redirectOnClick(){
     document.location ='showList';
@@ -34,6 +34,30 @@
     </script>
 
 }
+<div class="img4">
+    <img src="~/lib/img/img4.jpg" />
+</div>
+<style>
+    .btn-add .btn-outline-danger{
+        margin-left: 250px;
+        margin-top: 15px;
+    }
+    .btn-outline-danger{
+        margin-left: 320px;
+        margin-top: -67px;
+    }
+    .name-field .name{
+        margin-top:50px;
+        margin-bottom:15px;
+    }
+    .name-field .email{
+        margin-left:4px;
+    }
+    .img4{
+        margin-left: 500px;
+        margin-top: -200px;
+    }
+</style>
 
 
 
