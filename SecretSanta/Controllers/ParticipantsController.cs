@@ -52,17 +52,14 @@ namespace SecretSanta.Controllers
         public async Task<IActionResult> Generate()
         {
             await GenerateList();
-            await Clear();
             return View();
-            
         }
 
-
+        
         // GET: Participants/Add
-        public IActionResult Add() 
+        public IActionResult Add()
         {
             return View();
-
         }
 
         // POST: Participants/Add
@@ -80,7 +77,7 @@ namespace SecretSanta.Controllers
             _context.Add(participants);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Add));
-            
+
         }
 
 
@@ -111,24 +108,19 @@ namespace SecretSanta.Controllers
                 for (int i = 0; i < n; i++)
                 {
                     re.Add(new Recipients { NameS = p[i].Name, EmailS = p[i].Email, NameR = list[i].Name, EmailR = list[i].Email });
+                    if (p[i].Email.Equals(list[i].Email))
+                    {
+                        throw new Exception("Nobody can't be secret santa for itself!");
+                    }
                 }
+
+                
                 _context.AddRange(re);
                 await _context.SaveChangesAsync();
                 return View(_context.Recipients.ToList());
-                
             }
-            
+        }
 
-        }
-        
-        public async Task<IActionResult> Clear()
-        {
-            _context.Participants.RemoveRange();
-            _context.Recipients.RemoveRange();
-            await _context.SaveChangesAsync();
-            return View();
-        }
-        
         //Generate random list of recipients
         public static void GenerateL(List<Participants> p)
         {
@@ -142,9 +134,6 @@ namespace SecretSanta.Controllers
                 p[i] = tmp;
             }
         }
-      
-
-   
     }
 }
 
