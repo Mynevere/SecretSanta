@@ -21,7 +21,7 @@ namespace SecretSanta.Controllers
 
         // GET: Participants
         //List all participants from database table
-        public IActionResult showList()
+        public IActionResult ShowList() 
         {
             return View(_context.Participants.ToList());
         }
@@ -42,7 +42,7 @@ namespace SecretSanta.Controllers
             if (ModelState.IsValid)
             {
                 _context.Add(participants);
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync().ConfigureAwait(true);
                 return RedirectToAction(nameof(Add));
             }
             return View(participants);
@@ -50,10 +50,9 @@ namespace SecretSanta.Controllers
 
         public async Task<IActionResult> Generate()
         {
-            await GenerateList();
+            await GenerateList().ConfigureAwait(true);
             return View();
         }
-
         
         // GET: Participants/Add
         public IActionResult Add()
@@ -74,11 +73,10 @@ namespace SecretSanta.Controllers
 
             }
             _context.Add(participants);
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync().ConfigureAwait(true);
             return RedirectToAction(nameof(Add));
 
         }
-
 
         //Generate participants and recipients 
         //Save at Recipients Table 
@@ -111,10 +109,12 @@ namespace SecretSanta.Controllers
                     {
                         throw new Exception("Nobody can't be secret santa for itself!");
                     }
+                    
                 }
                 _context.AddRange(re);
-                await _context.SaveChangesAsync();
-                return View(_context.Recipients.ToList());
+                await _context.SaveChangesAsync().ConfigureAwait(true);
+                return View(_context.Recipients.ToList()); 
+
 
             }
         }
@@ -123,7 +123,7 @@ namespace SecretSanta.Controllers
         public static void GenerateL(List<Participants> p)
         {
             Random rand = new Random();
-            for (var i = p.Count(); i > 1;)
+            for (var i = p.Count; i > 1;)
             {
                 i--;
                 var j = (int)(rand.NextDouble() * (i));
