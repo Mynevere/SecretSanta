@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SecretSanta.DAL;
 using SecretSanta.Models;
 
@@ -113,11 +112,10 @@ namespace SecretSanta.Controllers
                         throw new Exception("Nobody can't be secret santa for itself!");
                     }
                 }
-
-                
                 _context.AddRange(re);
                 await _context.SaveChangesAsync();
                 return View(_context.Recipients.ToList());
+
             }
         }
 
