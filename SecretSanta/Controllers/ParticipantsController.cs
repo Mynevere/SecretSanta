@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SecretSanta.DAL;
@@ -32,9 +35,8 @@ namespace SecretSanta.Controllers
         {
             return View();
         }
+
         // POST: Participants/Play
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Play([Bind("Name", "Email")] Participants participants)
@@ -61,8 +63,6 @@ namespace SecretSanta.Controllers
         }
 
         // POST: Participants/Add
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add([Bind("Name", "Email")] Participants participants)
@@ -105,17 +105,15 @@ namespace SecretSanta.Controllers
                 for (int i = 0; i < n; i++)
                 {
                     re.Add(new Recipients { NameS = p[i].Name, EmailS = p[i].Email, NameR = list[i].Name, EmailR = list[i].Email });
-                    if (p[i].Email.Equals(list[i].Email))
+                    /*if (p[i].Email.Equals(list[i].Email))
                     {
                         throw new Exception("Nobody can't be secret santa for itself!");
-                    }
-                    
+                    }*/
                 }
                 _context.AddRange(re);
                 await _context.SaveChangesAsync().ConfigureAwait(true);
-                return View(_context.Recipients.ToList()); 
-
-
+                sendEmail(re);
+                return View(_context.Recipients.ToList());  
             }
         }
 
@@ -132,6 +130,35 @@ namespace SecretSanta.Controllers
                 p[i] = tmp;
             }
         }
+
+        protected static void sendEmail(List<Recipients> list)  
+        {
+
+            string subject = "Secret Santa-NOVUS";
+            string fromaddr = "secretsanta-2019@hotmail.com";
+            string pass = "Secretsanta2019";
+            for (int i = 0; i < list.Count; i++)
+            {
+                string msg = "Hello from Secret Santa 2019.\nYou should be a secret santa for: \n\n***" 
+                    + list[i].NameR + "***\n\nGood Luck!";
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.To.Add(new MailAddress(list[i].EmailS));
+                mailMessage.From = new MailAddress("secretsanta-2019@hotmail.com");
+                mailMessage.Subject = subject;
+                mailMessage.Body = msg;
+                
+
+                SmtpClient client = new SmtpClient("smtp.live.com", 587);
+                client.EnableSsl = true;
+                NetworkCredential nc = new NetworkCredential(fromaddr, pass);
+                
+                client.Credentials = nc;
+                client.Send(mailMessage);
+            }
+           
+        }
+        
+       
     }
 }
 
