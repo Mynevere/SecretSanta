@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -53,7 +52,7 @@ namespace SecretSanta.Controllers
         public async Task<IActionResult> Generate()
         {
             await GenerateList().ConfigureAwait(true);
-            return View();
+            return View(); 
         }
         
         // GET: Participants/Add
@@ -131,6 +130,7 @@ namespace SecretSanta.Controllers
             }
         }
 
+        //method-send email to participants
         protected static void sendEmail(List<Recipients> list)  
         {
 
@@ -155,7 +155,6 @@ namespace SecretSanta.Controllers
                 client.Credentials = nc;
                 client.Send(mailMessage);
             }
-           
         }
         
        
