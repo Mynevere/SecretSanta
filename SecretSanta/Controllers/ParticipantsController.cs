@@ -136,7 +136,7 @@ namespace SecretSanta.Controllers
 
             string subject = "Secret Santa-NOVUS";
             string fromaddr = "secretsanta-2019@hotmail.com";
-            string pass = "Secretsanta2019";
+            string pass = "***";
             for (int i = 0; i < list.Count; i++)
             {
                 string msg = "Hello from Secret Santa 2019.\nYou should be a secret santa for: \n\n***" 
